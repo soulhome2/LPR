@@ -1,0 +1,69 @@
+<div class="app">
+  <aside class="side" id="side" aria-label="Разделы">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div style="line-height:1.15"><div class="h-sm">Интеллект X</div><div class="cap subtle">LPR · распознавание ГРЗ</div></div>
+    </div>
+    <nav class="nav" id="nav">
+      <div class="ov">Оперативная работа</div>
+      <a class="nav-item" href="#kpp">{{ic:shield-check}}КПП / Проезды</a>
+      <a class="nav-item" href="#alerts">{{ic:bell}}Срабатывания<span class="badge badge-danger" id="nav-alerts">3</span></a>
+      <a class="nav-item" href="#territory">{{ic:location}}Территория и парковки</a>
+      <div class="ov">Поиск и анализ</div>
+      <a class="nav-item" href="#journal">{{ic:list-unordered}}Журнал проездов</a>
+      <a class="nav-item" href="#inv">{{ic:telescope}}Расследования</a>
+      <a class="nav-item" href="#reports">{{ic:graph}}Отчёты</a>
+      <a class="nav-item" href="#violations">{{ic:meter}}Нарушения<span class="badge badge-neutral">расш.</span></a>
+      <div class="ov">Настройка</div>
+      <a class="nav-item" href="#lists">{{ic:checklist}}Списки контроля</a>
+      <a class="nav-item" href="#channels">{{ic:device-camera-video}}Каналы и качество</a>
+    </nav>
+    <div class="side-foot cap subtle">Прототип по ТЗ LPR v0.1 · данные — фикстура</div>
+  </aside>
+
+  <div class="main-wrap">
+    <header class="top">
+      <button class="btn btn-icon menu-btn" id="menu-btn" aria-label="Открыть разделы">{{ic:three-bars}}</button>
+      <div class="h-md" id="page-title" style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">КПП / Проезды</div>
+      <div class="sp"></div>
+      <div class="gsearch">
+        {{ic:search}}
+        <input class="field" id="gsearch" placeholder="Найти ГРЗ: А123ВС77, А*77" autocomplete="off" aria-label="Поиск ГРЗ">
+        <span class="kbd">Ctrl K</span>
+      </div>
+      <select class="field hide-sm" style="width:auto" aria-label="Объект"><option>Завод «Север»</option><option>Логистический центр «Юг»</option></select>
+      <button class="btn btn-icon" id="proto-btn" data-kit-menu="#proto-pop" aria-label="Параметры прототипа">{{ic:sliders}}</button>
+      <button class="btn btn-icon" data-kit-theme aria-label="Сменить тему">{{ic:moon}}</button>
+      <button class="btn btn-subtle hide-sm" data-kit-menu="#user-menu">{{ic:person}}Сидоров А. В.</button>
+    </header>
+
+    <main id="view" tabindex="-1"></main>
+    <div class="fixture-note">Данные — фикстура, обновлено <span id="fx-time"></span>. Прототип не подключён к Интеллект X.</div>
+  </div>
+</div>
+
+<div class="popover" id="proto-pop" hidden style="width:300px">
+  <div class="h-sm" style="margin-bottom:8px">Параметры прототипа</div>
+  <label class="label" for="pp-state">Состояние блоков данных</label>
+  <select class="field" id="pp-state"><option value="data">Данные</option><option value="loading">Загрузка</option><option value="empty">Пусто</option><option value="error">Ошибка</option></select>
+  <div style="height:10px"></div>
+  <label class="choice"><input type="checkbox" class="switch" role="switch" id="pp-offline"> Связь КПП с центром потеряна</label>
+  <label class="choice"><input type="checkbox" class="switch" role="switch" id="pp-sim" checked> Поток проездов (каждые 9 с)</label>
+  <label class="choice"><input type="checkbox" class="switch" role="switch" id="pp-big"> Крупный режим (видеостена)</label>
+  <div class="helper">Горячие клавиши КПП: F2 пропустить · F4 отказать · F6 исправить ГРЗ · F8 гостевой</div>
+</div>
+<div class="menu" id="user-menu" hidden role="menu" style="width:220px">
+  <div class="menu-head" style="padding:8px 12px"><div class="h-sm">Сидоров А. В.</div><div class="cap muted">Оператор КПП · смена 08:00–20:00</div></div>
+  <button class="menu-item" role="menuitem">{{ic:person}}Профиль</button>
+  <button class="menu-item" role="menuitem">{{ic:sync}}Сменить пользователя</button>
+</div>
+
+<!-- right sheet: vehicle / entry card -->
+<div class="sheet-scrim" id="sheet-scrim" hidden></div>
+<aside class="sheet" id="sheet" aria-label="Карточка" tabindex="-1"></aside>
+
+<!-- dialogs -->
+<dialog class="dialog" id="dlg"></dialog>
+
+<div class="toasts" id="toasts" aria-live="polite"></div>
+<div class="tip" id="tip" hidden></div>
